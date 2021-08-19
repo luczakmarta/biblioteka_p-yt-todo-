@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Rekord plyt{% endblock %}
+
+
+
+
+{% block page_content %}
+
+<h1> Moj rekord plytowy</h1>
+
+
+<div class="task-list">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id plyty</th>
+            <th>Autor</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+
+    {% for record in records %}
+    <tr>
+
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ record.author }}</td>
+        <td>{{ record.date_of_record }}</td>
+
+        <td>
+            <a href="/records/delete/{{ record.id }}">Delete</a> <br>
+            <a href="/records/update/{{ record.id }}">Update</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+<div class='my-form'>
+    {{ wtf.quick_form(form) }}
+</div>
+
+{% endblock %}
